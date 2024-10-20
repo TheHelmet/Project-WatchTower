@@ -7,7 +7,6 @@ resource "aws_instance" "overwatch" {
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.subnet.id
   vpc_security_group_ids      = ["${aws_security_group.security_group.id}"]
-  user_data                   = file("cloudinit/cloud.yaml")
 
   root_block_device {
     delete_on_termination = true
