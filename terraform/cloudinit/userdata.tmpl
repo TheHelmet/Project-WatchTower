@@ -4,13 +4,13 @@ package_upgrade: true
 
 # Install Docker
 runcmd:
-  - curl -fsSL https://get.docker.com -o get-docker.sh
-  - sh get-docker.sh
-  - usermod -aG docker ubuntu  # Add the default user (ubuntu) to the docker group
+  - sudo curl -fsSL https://get.docker.com -o get-docker.sh
+  - sudo sh get-docker.sh
+  - sudo usermod -aG docker ubuntu  # Add the default user (ubuntu) to the docker group
 
 # Install Docker Compose
-  - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  - chmod +x /usr/local/bin/docker-compose
+  - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  - sudo chmod +x /usr/local/bin/docker-compose
 
 # Write Docker Compose file for Wazuh setup
 write_files:
@@ -80,4 +80,4 @@ write_files:
 # Start Docker Compose after everything is ready
 runcmd:
   - cd /home/ubuntu
-  - docker-compose up -d
+  - sudo docker-compose up -d
