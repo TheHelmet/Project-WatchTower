@@ -1,13 +1,13 @@
 #!/bin/bash
-# Install Docker and Docker Compose, and set up Wazuh using Docker Compose
+
 runcmd:
   - sudo curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
   - sudo sh /tmp/get-docker.sh
-  - sudo usermod -aG docker ubuntu  # Add the default user (ubuntu) to the docker group
+  - sudo usermod -aG docker ubuntu 
   - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   - sudo chmod +x /usr/local/bin/docker-compose
 
-# Write Docker Compose file for Wazuh setup
+
 write_files:
   - path: /home/ubuntu/docker-compose.yml
     permissions: '0644'
@@ -72,6 +72,6 @@ write_files:
         wazuh-net:
           driver: bridge
 
-# Start Docker Compose after everything is ready
+
   - cd /home/ubuntu
   - sudo docker-compose up -d
