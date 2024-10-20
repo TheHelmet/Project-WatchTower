@@ -1,7 +1,7 @@
 resource "aws_instance" "overwatch" {
 
   count                       = 1
-  ami                         = "ami-08e168f4c7bff7921"
+  ami                         = "ami-083644ad45483a44f"
   instance_type               = "t2.large"
   key_name                    = var.key_pair
   associate_public_ip_address = true
