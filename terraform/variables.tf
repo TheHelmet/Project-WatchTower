@@ -16,5 +16,4 @@ variable "key_pair" {
 
 variable "my_ip" {
   type    = string
-  default = SECRETS.MY_IP
 }
