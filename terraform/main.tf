@@ -19,5 +19,8 @@ resource "aws_instance" "overwatch" {
     "project" = var.project
   }
 
+  user_data_base64 = base64encode(templatefile("cloudinit/userdata.tmpl", {
+  }))
+}
 
 }
