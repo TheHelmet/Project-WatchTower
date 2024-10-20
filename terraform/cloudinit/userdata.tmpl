@@ -1,17 +1,10 @@
-#cloud-config
-package_update: true
-package_upgrade: true
-
-# Install Docker
+# Install Docker and Docker Compose, and set up Wazuh using Docker Compose
 runcmd:
-  - [sudo curl -fsSL https://get.docker.com -o get-docker.sh]
-  - [sudo sh get-docker.sh]
-  - [sudo usermod -aG docker ubuntu]  # Add the default user (ubuntu) to the docker group
-
-# Install Docker Compose
-runcmd:
-  - [sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose]
-  - [sudo chmod +x /usr/local/bin/docker-compose]
+  - sudo curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+  - sudo sh /tmp/get-docker.sh
+  - sudo usermod -aG docker ubuntu  # Add the default user (ubuntu) to the docker group
+  - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  - sudo chmod +x /usr/local/bin/docker-compose
 
 # Write Docker Compose file for Wazuh setup
 write_files:
@@ -79,6 +72,5 @@ write_files:
           driver: bridge
 
 # Start Docker Compose after everything is ready
-runcmd:
-  - [cd /home/ubuntu]
-  - [sudo docker-compose up -d]
+  - cd /home/ubuntu
+  - sudo docker-compose up -d
