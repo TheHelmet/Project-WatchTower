@@ -1,11 +1,4 @@
 #cloud-config
-runcmd:
- - sudo curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
- - sudo sh /tmp/get-docker.sh
- - sudo usermod -aG docker ubuntu
- - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
- - sudo chmod +x /usr/local/bin/docker-compose
-
 write_files:
   - path: /home/ubuntu/docker-compose.yml
     permissions: '0644'
@@ -69,6 +62,11 @@ write_files:
       networks:
         wazuh-net:
           driver: bridge
-
+runcmd:
+ - sudo curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+ - sudo sh /tmp/get-docker.sh
+ - sudo usermod -aG docker ubuntu
+ - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+ - sudo chmod +x /usr/local/bin/docker-compose
  - cd /home/ubuntu
  - sudo docker-compose up -d
