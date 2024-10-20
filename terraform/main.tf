@@ -22,4 +22,3 @@ resource "aws_instance" "overwatch" {
   }))
 }
 
-}
