@@ -32,6 +32,54 @@ resource "aws_vpc_security_group_ingress_rule" "https_inbound_my_ip" {
   ip_protocol       = "tcp"
 }
 
+ingress {
+    from_port   = 1514
+    to_port     = 1514
+    protocol    = "udp"
+    cidr_blocks = [var.my_ip]  # Replace with your actual IP or secret value
+  }
+
+  ingress {
+    from_port   = 1515
+    to_port     = 1515
+    protocol    = "tcp"
+    cidr_blocks = [var.my_ip]
+  }
+
+  ingress {
+    from_port   = 55000
+    to_port     = 55000
+    protocol    = "tcp"
+    cidr_blocks = [var.my_ip]
+  }
+
+  ingress {
+    from_port   = 55000
+    to_port     = 55000
+    protocol    = "udp"
+    cidr_blocks = [var.my_ip]
+  }
+
+  ingress {
+    from_port   = 9200
+    to_port     = 9200
+    protocol    = "tcp"
+    cidr_blocks = [var.my_ip]
+  }
+
+  ingress {
+    from_port   = 9300
+    to_port     = 9300
+    protocol    = "tcp"
+    cidr_blocks = [var.my_ip]
+  }
+
+  ingress {
+    from_port   = 5601
+    to_port     = 5601
+    protocol    = "tcp"
+    cidr_blocks = [var.my_ip]
+  }
 
 
 resource "aws_vpc_security_group_ingress_rule" "internal" {
@@ -40,4 +88,6 @@ resource "aws_vpc_security_group_ingress_rule" "internal" {
   cidr_ipv4         = aws_subnet.subnet.cidr_block
   ip_protocol       = -1
 }
+
+
 
